@@ -13,8 +13,8 @@ const ListTopics = () => {
         <div className="w-full flex justify-start items-cente gap-72">
             {loading && <h1>Loading...</h1>}
             {data && data.topics.map(topic => (
-                <Link key={topic.id} to="/topic">
-                    <img src={noteBook} className="absolute w-52"/>
+                <Link key={topic.id} to={`/topic/${topic.id}`}>
+                    <img src={noteBook} className="absolute w-52" alt=""/>
                     <h3 className="absolute mt-20 ml-14">{topic.name}</h3>
                 </Link>
             ))}

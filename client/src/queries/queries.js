@@ -41,7 +41,19 @@ const getTopicsQuery = gql`
             name
         }
     }
-`
+`;
+
+const getTopicQuery = gql`
+    ${subtopicFields}
+    query Topic($id: ID) {
+        topic(id: $id) {
+            name,
+            subtopics {
+                ...SubtopicFields
+            }
+        }
+    }
+`;
 
 const getAuthorsQuery = gql`
 {
@@ -82,4 +94,11 @@ mutation($name: String!, $genre: String!, $authorId: ID!) {
     }
 }`
 
-export { getAuthorsQuery, getBooksQuery, addBookMutation, getBook, getTopicsQuery, getSubtopicsQuery };
+const addTopicMutation = gql`
+mutation($name: String!) {
+    addTopic(name: $name){
+        name
+    }
+}`
+
+export { getAuthorsQuery, getBooksQuery, addBookMutation, getBook, getTopicsQuery, getSubtopicsQuery, addTopicMutation, getTopicQuery };
